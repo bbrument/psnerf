@@ -10,6 +10,7 @@ parser.add_argument("--path", type=str, default='dataset', )
 parser.add_argument("--train_light", type=int, default=None, )
 parser.add_argument("--light_intnorm", action="store_true", default=False, )
 parser.add_argument("--sdps", action="store_true", default=False, )
+parser.add_argument("--sdm", action="store_true", default=False, )
 args = parser.parse_args()
 
 obj_name = args.obj
@@ -38,6 +39,14 @@ if args.light_intnorm:
             normalizedir = os.path.join(datadir, obj_name, f'img_intnorm_sdps_l{train_light}')
         else:
             light_int = np.load(os.path.join(datadir,obj_name,'sdps_out/light_intensity_pred.npy'), allow_pickle=True)
+            normalizedir = os.path.join(datadir, obj_name, 'img_intnorm_sdps')
+        avgdir = 'avg'
+    elif args.sdm:
+        if light_is_same:
+            light_int = np.load(os.path.join(datadir,obj_name,f'sdm_out_l{train_light}/light_intensity_pred.npy'), allow_pickle=True)
+            normalizedir = os.path.join(datadir, obj_name, f'img_intnorm_sdps_l{train_light}')
+        else:
+            light_int = np.load(os.path.join(datadir,obj_name,'sdm_out/light_intensity_pred.npy'), allow_pickle=True)
             normalizedir = os.path.join(datadir, obj_name, 'img_intnorm_sdps')
         avgdir = 'avg'
     else:

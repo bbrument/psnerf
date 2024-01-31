@@ -61,7 +61,8 @@ class Shapes3dDataset(data.Dataset):
 
         im_sub = 'img'
         im_type = 'avg'
-        self.est_norm_dir = os.path.join(basedir,'sdps_out')
+        # self.est_norm_dir = os.path.join(basedir,'sdps_out')
+        self.est_norm_dir = os.path.join(basedir,'sdm_out')
         inten_normalize = cfg['dataloading'].get('inten_normalize',None)
         if para['light_is_same']:
             n_light = len(para['light_direction'])
